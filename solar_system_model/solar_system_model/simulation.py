@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
 from matplotlib.lines import Line2D
 
-from solar_system_model.models import SpaceObject, Spacecraft
+from solar_system_model.models import SpaceObject
 
 
 class SolarSystemSimulation:
@@ -28,24 +28,24 @@ class SolarSystemSimulation:
 
     def __init__(self, timestamp=100):
         self.timestamp = timestamp
-        self.max_dist = 1 * 10 ** 11
-        self.ax_lim = 10 ** 9
+        self.max_dist = 1 * 10**11
+        self.ax_lim = 10**9
         self.screen_ratio = 4 / 3
 
         # Initialize celestial objects
-        self.sun = SpaceObject(mass=1.989 * (10 ** 30), position=[0, 0], velocity=[0, 0])
+        self.sun = SpaceObject(mass=1.989 * (10**30), position=[0, 0], velocity=[0, 0])
 
         # Inner planets
-        self.mercury = SpaceObject(mass=0.33 * (10 ** 24), position=[-57.9 * (10 ** 9), 0], velocity=[0, -47400])
-        self.venus = SpaceObject(mass=4.87 * (10 ** 24), position=[0, 108.2 * (10 ** 9)], velocity=[-35000, 0])
-        self.earth = SpaceObject(mass=5.972 * (10 ** 24), position=[0, -149.6 * (10 ** 9)], velocity=[29800, 0])
-        self.mars = SpaceObject(mass=0.642 * (10 ** 24), position=[227.9 * (10 ** 9), 0], velocity=[0, 24100])
+        self.mercury = SpaceObject(mass=0.33 * (10**24), position=[-57.9 * (10**9), 0], velocity=[0, -47400])
+        self.venus = SpaceObject(mass=4.87 * (10**24), position=[0, 108.2 * (10**9)], velocity=[-35000, 0])
+        self.earth = SpaceObject(mass=5.972 * (10**24), position=[0, -149.6 * (10**9)], velocity=[29800, 0])
+        self.mars = SpaceObject(mass=0.642 * (10**24), position=[227.9 * (10**9), 0], velocity=[0, 24100])
 
         # Outer planets
-        self.jupiter = SpaceObject(mass=1898 * (10 ** 24), position=[-778.6 * (10 ** 9), 0], velocity=[0, -13100])
-        self.saturn = SpaceObject(mass=568 * (10 ** 24), position=[0, 1433.5 * (10 ** 9)], velocity=[-9700, 0])
-        self.uranus = SpaceObject(mass=86.8 * (10 ** 24), position=[0, -2872.5 * (10 ** 9)], velocity=[6800, 0])
-        self.neptune = SpaceObject(mass=102 * (10 ** 24), position=[4495.1 * (10 ** 9), 0], velocity=[0, 5400])
+        self.jupiter = SpaceObject(mass=1898 * (10**24), position=[-778.6 * (10**9), 0], velocity=[0, -13100])
+        self.saturn = SpaceObject(mass=568 * (10**24), position=[0, 1433.5 * (10**9)], velocity=[-9700, 0])
+        self.uranus = SpaceObject(mass=86.8 * (10**24), position=[0, -2872.5 * (10**9)], velocity=[6800, 0])
+        self.neptune = SpaceObject(mass=102 * (10**24), position=[4495.1 * (10**9), 0], velocity=[0, 5400])
 
         # Extrasolar
         # self.extrasolar = SpaceObject(
@@ -66,32 +66,31 @@ class SolarSystemSimulation:
         }
         if planets["Mercury"] == True:
             SolarSystemSimulation.celestials["Mercury"] = self.mercury
-            self.max_dist = 1 * 10 ** 11
+            self.max_dist = 1 * 10**11
         if planets["Venus"] == True:
             SolarSystemSimulation.celestials["Venus"] = self.venus
-            self.max_dist = 1.6 * 10 ** 11
+            self.max_dist = 1.6 * 10**11
         if planets["Earth"] == True:
             SolarSystemSimulation.celestials["Earth"] = self.earth
-            self.max_dist = 2.2 * 10 ** 11
+            self.max_dist = 2.2 * 10**11
         if planets["Mars"] == True:
             SolarSystemSimulation.celestials["Mars"] = self.mars
-            self.max_dist = 3.3 * 10 ** 11
+            self.max_dist = 3.3 * 10**11
         if planets["Jupiter"] == True:
             SolarSystemSimulation.celestials["Jupiter"] = self.jupiter
-            self.max_dist = 1.2 * 10 ** 12
+            self.max_dist = 1.2 * 10**12
         if planets["Saturn"] == True:
             SolarSystemSimulation.celestials["Saturn"] = self.saturn
-            self.max_dist = 2.2 * 10 ** 12
+            self.max_dist = 2.2 * 10**12
         if planets["Uranus"] == True:
             SolarSystemSimulation.celestials["Uranus"] = self.uranus
-            self.max_dist = 4.5 * 10 ** 12
+            self.max_dist = 4.5 * 10**12
         if planets["Neptune"] == True:
             SolarSystemSimulation.celestials["Neptune"] = self.neptune
-            self.max_dist = 6.5 * 10 ** 12
+            self.max_dist = 6.5 * 10**12
 
     def simulate_step(self):
-        """Iterate through celestials and update their attributes.
-        """
+        """Iterate through celestials and update their attributes."""
 
         for celestial in SolarSystemSimulation.celestials.items():
             celestial[1].update_attributes(SolarSystemSimulation.celestials, self.timestamp)
@@ -153,8 +152,7 @@ class SolarSystemSimulation:
         return elapsed_time
 
     def animation(self):
-        """Starts and animates the simulation.
-        """
+        """Starts and animates the simulation."""
 
         # Create lists for planets and sun coordinates
         planets_x = np.zeros(len(SolarSystemSimulation.celestials) - 1, dtype=float)
