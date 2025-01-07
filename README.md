@@ -2,14 +2,9 @@
 > 2D Solar System model.
 
 ## General info
-Gravitational model of the Solar System. It uses Euler method to estimate position and velocity of objects.
-User can add additional objects. GUI created using Tkinter and animation created using Matplotlib.
+Gravitational model of the Solar System. User can add additional objects. 
+GUI created using Tkinter and animation created using Matplotlib.
 
-## Technologies
-* Python 3.8.0
-    * NumPy
-	* Matplotlib
-    * Tkinter
 
 ## How to install
 1. Download the .zip or clone the repository. 
@@ -32,6 +27,3 @@ Solar System simulation - Mercury and Venus excluded.
 * simulation.py - contains SolarSystemSimulation class.
 * tests - module that contains all tests.
 * gui.py - module that contains GUI.
-
-## Status
-Project is: _in progress_
