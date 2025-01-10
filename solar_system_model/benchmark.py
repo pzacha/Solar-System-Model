@@ -41,7 +41,7 @@ def add_random_planets(sim: SolarSystemSimulation, num_of_planets: int):
 
 
 sim = SolarSystemSimulation(3600)
-add_random_planets(sim, 4)
+add_random_planets(sim, 99)
 
 start_time = time.time()
 simulation_step(sim)

@@ -43,7 +43,7 @@ class SpaceObject:
         """
 
         v_x, v_y = self.velocity
-        return np.sqrt(v_x ** 2 + v_y ** 2)
+        return np.sqrt(v_x**2 + v_y**2)
 
     def calc_distance(self, position):
         """Calculates the distance between self and position.
@@ -72,7 +72,7 @@ class SpaceObject:
         Returns
         -------
         force : list[int]
-            Gravitational force exerted by celestial. Contains x and y components and real value in that order.    
+            Gravitational force exerted by celestial. Contains x and y components and real value in that order.
         """
         # Distance = [distance_x, distance_y, distance]
         distance = self.calc_distance(celestial.position)
@@ -105,7 +105,7 @@ class SpaceObject:
         acceleration = [sum_force[0] / self.mass, sum_force[1] / self.mass]
         return acceleration
 
-    def update_attributes(self, celestials, timestamp):
+    def update_attributes(self, celestials, step_size):
         """Calculates acceleration and updates attributes.
 
         Parameters
@@ -113,23 +113,23 @@ class SpaceObject:
         celestials : Dict
             Dict that stores all celestial objects.
         timpestamp : int
-            Simulation timestamp value.            
+            Simulation step_size value.
         """
 
         acceleration = self.calc_acceleration(celestials)
 
         # Calculating x and y components of velocity
-        self.velocity[0] = float(self.velocity[0] + acceleration[0] * timestamp)
-        self.velocity[1] = float(self.velocity[1] + acceleration[1] * timestamp)
+        self.velocity[0] = float(self.velocity[0] + acceleration[0] * step_size)
+        self.velocity[1] = float(self.velocity[1] + acceleration[1] * step_size)
 
         # Calculating new x and y coordinates
-        self.position[0] = float(self.position[0] + self.velocity[0] * timestamp)
-        self.position[1] = float(self.position[1] + self.velocity[1] * timestamp)
+        self.position[0] = float(self.position[0] + self.velocity[0] * step_size)
+        self.position[1] = float(self.position[1] + self.velocity[1] * step_size)
 
 
 class Spacecraft(SpaceObject):
     """
-    A class used to represent a spacecraft. It inherits the functionality from SpaceObject class. 
+    A class used to represent a spacecraft. It inherits the functionality from SpaceObject class.
 
     Attributes:
     ----------

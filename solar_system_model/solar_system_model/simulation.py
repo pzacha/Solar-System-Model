@@ -14,8 +14,8 @@ class SolarSystemSimulation:
     ----------
     celestials : dict
         Class attribute. Dictionary containing celestial objects.
-    timestamp : int
-        Simulation timestamp value in seconds.
+    step_size : int
+        Simulation step_size value in seconds.
     max_dist : int
         Farthest displayed position.
     ax_lim : int
@@ -26,8 +26,8 @@ class SolarSystemSimulation:
 
     celestials = {}
 
-    def __init__(self, timestamp=100):
-        self.timestamp = timestamp
+    def __init__(self, step_size=100):
+        self.step_size = step_size
         self.max_dist = 1 * 10**11
         self.ax_lim = 10**9
         self.screen_ratio = 4 / 3
@@ -93,7 +93,7 @@ class SolarSystemSimulation:
         """Iterate through celestials and update their attributes."""
 
         for celestial in SolarSystemSimulation.celestials.items():
-            celestial[1].update_attributes(SolarSystemSimulation.celestials, self.timestamp)
+            celestial[1].update_attributes(SolarSystemSimulation.celestials, self.step_size)
 
     def normalize_position(self, position):
         """Normalizes position values for proper display.
@@ -134,7 +134,7 @@ class SolarSystemSimulation:
                 iter += 1
 
     def calc_elapsed_time(self, frame):
-        """Calculates elapsed time based on frame number and timestamp value.
+        """Calculates elapsed time based on frame number and step_size value.
 
         Parameters
         ----------
@@ -147,7 +147,7 @@ class SolarSystemSimulation:
             Elapsed time in days.
         """
 
-        time = frame * self.timestamp / 86400
+        time = frame * self.step_size / 86400
         elapsed_time = "Elapsed time: " + str(round(time)) + " days"
         return elapsed_time
 

@@ -19,12 +19,12 @@ class UserInterface:
         self.start.grid(column=0, row=6)
 
         # Define inputs
-        self.timestep_desc = tk.Label(self.window, text="Timestep value: ")
-        self.timestep_desc.grid(column=0, row=0)
-        self.timestep = tk.Entry(self.window, width=10)
-        self.timestep.grid(column=1, row=0)
-        self.timestep_unit = tk.Label(self.window, text="seconds.")
-        self.timestep_unit.grid(column=2, row=0)
+        self.step_size_desc = tk.Label(self.window, text="Step size value: ")
+        self.step_size_desc.grid(column=0, row=0)
+        self.step_size = tk.Entry(self.window, width=10)
+        self.step_size.grid(column=1, row=0)
+        self.step_size_unit = tk.Label(self.window, text="seconds.")
+        self.step_size_unit.grid(column=2, row=0)
 
         # Define checkbuttons
         self.check_planets = tk.Label(self.window, text="Choose planets for simulation.")
@@ -57,14 +57,13 @@ class UserInterface:
         # Start GUI.
         self.window.mainloop()
 
-    def set_timestep(self, s):
-        """Checks if timestep is correct. If not, set the value to default.
-        """
+    def set_step_size(self, s):
+        """Checks if step_size is correct. If not, set the value to default."""
         try:
             int(s)
         except:
-            self.timestep.delete(0, "end")
-            self.timestep.insert(0, 7200)
+            self.step_size.delete(0, "end")
+            self.step_size.insert(0, 7200)
 
     def get_checkbuttons_values(self):
         """Gets checkbuttons values and prepares dictionary with planets chosen for simulation.
@@ -89,15 +88,15 @@ class UserInterface:
 
     def start_simulation(self):
         """
-        Method that starts the simulation. Used for start button. 
+        Method that starts the simulation. Used for start button.
         It checks if Entry value is correct.
         """
 
-        # Get timestep value
-        self.set_timestep(self.timestep.get())
+        # Get step_size value
+        self.set_step_size(self.step_size.get())
 
         # Create simulation instance
-        sim = SolarSystemSimulation(int(self.timestep.get()))
+        sim = SolarSystemSimulation(int(self.step_size.get()))
 
         # Load chosen planets
         planets = self.get_checkbuttons_values()
